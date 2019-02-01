@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 14:57:00 by bbear             #+#    #+#             */
-/*   Updated: 2019/01/30 19:25:59 by bbear            ###   ########.fr       */
+/*   Updated: 2019/02/01 20:36:31 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "fdf.h"
 #include <stdlib.h>
 
-void	bresenham(void *mlx_ptr, void *win_ptr, int *x, int *y)
+void	bresenham(t_fdf *fdf, int *x, int *y)
 {
 	int		delta[2];
 	int		sign[2];
@@ -30,17 +30,17 @@ void	bresenham(void *mlx_ptr, void *win_ptr, int *x, int *y)
 	delta[1] = abs(y[1] - y[0]);
 	sign[0] = x[0] < x[1] ? 1 : -1;
 	if (delta[0] > delta[1])
-		i = 1 / delta[0];
+		i = (float)1 / (delta[0] + 1);
 	else
-		i = 1 / delta[1];
+		i = (float)1 / (delta[1] + 1);
 	plus = i;
 	sign[1] = y[0] < y[1] ? 1 : -1;
 	error[0] = delta[0] - delta[1];
-	mlx_pixel_put(mlx_ptr, win_ptr, x[1], y[1], color[0]);
+	mlx_pixel_put(fdf->mlx_ptr, fdf->win_ptr, x[1], y[1], color[0]);
 	while (x[0] != x[1] || y[0] != y[1])
 	{
 		color[2] = color[0] + i * (color[1] - color[0]);
-		mlx_pixel_put(mlx_ptr, win_ptr, x[0], y[0], color[2]);
+		mlx_pixel_put(fdf->mlx_ptr, fdf->win_ptr, x[0], y[0], color[2]);
 		error[1] = error[0] * 2;
 		if (error[1] > -delta[1])
 		{
