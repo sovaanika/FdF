@@ -33,7 +33,9 @@ int		main(void)
 	size[1] = 4;
 	fdf = (t_fdf *)malloc(sizeof(*fdf));
 	fdf->mlx_ptr = mlx_init();
-	fdf->cellsize = 50;
+	fdf->cellsize = 250;
+	fdf->color[0] = 0x0000FFFF;
+	fdf->color[1] = 0x00FF00FF;
 	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, 1300, 1300, "hell");
 	celldraw(fdf, 50, 50, size);
 	//bresenham(fdf, x, y);
