@@ -4,6 +4,7 @@
 # include <math.h>
 # include "mlx.h"
 # include <stdlib.h>
+# include "libft/includes/libft.h"
 
 typedef struct	s_fdf
 {

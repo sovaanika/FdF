@@ -24,11 +24,13 @@ int		main(void)
 	int		size[2];
 	int		x[2];
 	int		y[2];
+	int		fd;
 
 	x[0] = 153;
 	x[1] = 53;
 	y[0] = 70;
 	y[1] = 70;
+	fd = open("./test_maps/42.fdf", O_RDONLY);
 	size[0] = 4;
 	size[1] = 4;
 	fdf = (t_fdf *)malloc(sizeof(*fdf));
@@ -38,7 +40,6 @@ int		main(void)
 	fdf->color[1] = 0x00FF00FF;
 	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, 1300, 1300, "hell");
 	celldraw(fdf, 50, 50, size);
-	//bresenham(fdf, x, y);
 	mlx_key_hook(fdf->win_ptr, key_press, (void *)0);
 	mlx_hook(fdf->win_ptr, 17, 0, close, (void *)0);
 	mlx_loop(fdf->mlx_ptr);

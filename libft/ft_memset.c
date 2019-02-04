@@ -1,14 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mapfunctions.c                                     :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/01 16:15:32 by bbear             #+#    #+#             */
-/*   Updated: 2019/02/04 17:09:29 by bbear            ###   ########.fr       */
+/*   Created: 2018/11/24 20:47:38 by bbear             #+#    #+#             */
+/*   Updated: 2018/11/28 17:43:09 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
+void	*ft_memset(void *b, int c, size_t len)
+{
+	unsigned char	*new;
+
+	new = (unsigned char *)b;
+	while (len)
+	{
+		*new++ = c;
+		len--;
+	}
+	return (b);
+}

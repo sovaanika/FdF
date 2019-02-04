@@ -1,14 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mapfunctions.c                                     :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/01 16:15:32 by bbear             #+#    #+#             */
-/*   Updated: 2019/02/04 17:09:29 by bbear            ###   ########.fr       */
+/*   Created: 2018/12/01 15:46:52 by bbear             #+#    #+#             */
+/*   Updated: 2018/12/01 16:15:37 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+{
+	unsigned int	i;
+
+	i = 0;
+	if (s != NULL && f != NULL)
+		while (*s)
+		{
+			f(i++, s++);
+		}
+}

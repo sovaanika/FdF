@@ -1,14 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mapfunctions.c                                     :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/01 16:15:32 by bbear             #+#    #+#             */
-/*   Updated: 2019/02/04 17:09:29 by bbear            ###   ########.fr       */
+/*   Created: 2018/11/24 18:47:02 by bbear             #+#    #+#             */
+/*   Updated: 2018/12/02 15:26:22 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
+#include <stdio.h>
 
+char	*ft_strcpy(char *dst, const char *src)
+{
+	char	*dest;
+
+	dest = dst;
+	while (*src)
+	{
+		*dst++ = *src++;
+	}
+	*dst = '\0';
+	return (dest);
+}
