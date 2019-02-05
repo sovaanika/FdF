@@ -6,12 +6,19 @@
 # include <stdlib.h>
 # include "libft/includes/libft.h"
 
+typedef struct	s_map
+{
+	char		**map;
+	int			size[2];
+}				t_map;
+
 typedef struct	s_fdf
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
 	int			cellsize;
 	int			color[3];
+	t_map		*map;
 }				t_fdf;
 
 typedef struct	s_bres
