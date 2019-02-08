@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 16:15:32 by bbear             #+#    #+#             */
-/*   Updated: 2019/02/07 17:20:50 by bbear            ###   ########.fr       */
+/*   Updated: 2019/02/08 17:31:21 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,8 @@ char	*make_long_string(t_fdf *fdf, char *str, int fd)
 
 	i = 0;
 	mp = (t_map *)malloc(sizeof(*mp));
-	//map = (char **)malloc(120 * sizeof(char *));
 	line = ft_strnew(0);
 	tmp = line;
-
 	while (get_next_line(fd, line))
 	{
 		temp = tmp;
@@ -34,9 +32,24 @@ char	*make_long_string(t_fdf *fdf, char *str, int fd)
 		free(temp);
 		i++;
 	}
+	if (i == 0)
+		ft_error(1);
 }
 
-char	**doublesplit(char *line, int i)
+char	***doublesplit(char *line, int i)
 {
+	char	**farray;
+	char	***finarray;
+	int		j;
 
+	farray = ft_strsplit(line, '\n');
+	finarray = (char ***)malloc((i + 1) * sizeof(char *));
+	j = 0;
+	while (j <= i)
+	{
+		finarray[j] = ft_strsplit(farray[j], ' ');
+		j++;
+	}
+	finarray[j] = '\0';
+	return (finarray);
 }
