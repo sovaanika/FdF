@@ -6,13 +6,13 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 16:26:25 by bbear             #+#    #+#             */
-/*   Updated: 2019/02/01 21:33:57 by bbear            ###   ########.fr       */
+/*   Updated: 2019/02/11 14:21:11 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	celldraw(t_fdf *fdf, int startx, int starty, int *size)
+void	celldraw(t_fdf *fdf, int startx, int starty)
 {
 	int		i;
 	int		x[2];
@@ -23,18 +23,18 @@ void	celldraw(t_fdf *fdf, int startx, int starty, int *size)
 	x[1] = x[0];
 	y[0] = starty + (fdf->cellsize);
 	y[1] = y[0];
-	while (i++ < size[1])
+	while (i++ < fdf->sizey)
 	{
-		draw_y(fdf, starty, x, size[0]);
+		draw_y(fdf, starty, x, fdf->sizex);
 		x[0] += fdf->cellsize;
 		x[1] = x[0];
 	}
 	i = 0;
 	x[0] = startx + (fdf->cellsize);
 	x[1] = x[0];
-	while (i++ < size[0])
+	while (i++ < fdf->sizex)
 	{
-		draw_x(fdf, startx, y, size[1]);
+		draw_x(fdf, startx, y, fdf->sizey);
 		y[0] = y[0] + fdf->cellsize;
 		y[1] = y[0];
 	}

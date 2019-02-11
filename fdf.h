@@ -6,9 +6,17 @@
 # include <stdlib.h>
 # include "libft/includes/libft.h"
 
+typedef struct	s_point
+{
+	int			x;
+	int			y;
+	int			z;
+	char		*color;
+}				t_point;
+
 typedef struct	s_map
 {
-	char		**map;
+	t_point		**map;
 	int			size[2];
 }				t_map;
 
@@ -18,6 +26,8 @@ typedef struct	s_fdf
 	void		*win_ptr;
 	int			cellsize;
 	int			color[3];
+	int			sizex;
+	int			sizey;
 	t_map		*map;
 }				t_fdf;
 
@@ -29,10 +39,13 @@ typedef struct	s_bres
 }				t_bres;
 
 void			bresenham(t_fdf *fdf, int *x, int *y);
-void			celldraw(t_fdf *fdf, int startx, int starty, int *size);
+void			celldraw(t_fdf *fdf, int startx, int starty);
 void			draw_y(t_fdf *fdf, int starty, int *x, int size);
 void			draw_x(t_fdf *fdf, int startx, int *y, int size);
 void			ft_error(int nb);
+void			make_long_string(int fd, t_fdf *fdf);
+void			doublesplit(char *line, int i, t_fdf *fdf);
+void			check_length(t_fdf *fdf, char ***array, int i);
 
 
 #endif

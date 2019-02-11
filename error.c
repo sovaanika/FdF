@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 17:16:05 by bbear             #+#    #+#             */
-/*   Updated: 2019/02/07 17:20:44 by bbear            ###   ########.fr       */
+/*   Updated: 2019/02/11 13:53:45 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	ft_error(int nb)
 {
-	if (nb = 1)
+	if (nb == 1)
 		ft_putendl("Empty file");
+	else if (nb == 2)
+		ft_putendl("Map error");
 	exit(EXIT_FAILURE);
 }
