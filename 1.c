@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 17:16:39 by bbear             #+#    #+#             */
-/*   Updated: 2019/02/11 20:47:14 by bbear            ###   ########.fr       */
+/*   Updated: 2019/02/14 15:24:51 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		main(void)
 	size[1] = 4;
 	fdf = (t_fdf *)malloc(sizeof(*fdf));
 	fdf->mlx_ptr = mlx_init();
-	fdf->cellsize = 250;
+	fdf->cellsize = 50;
 	fdf->color[0] = 0x0000FFFF;
 	fdf->color[1] = 0x00FF00FF;
 	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, 1300, 1300, "hell");

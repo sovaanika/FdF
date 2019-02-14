@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 16:15:32 by bbear             #+#    #+#             */
-/*   Updated: 2019/02/11 20:27:43 by bbear            ###   ########.fr       */
+/*   Updated: 2019/02/14 16:12:26 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,9 @@ void	make_long_string(int fd, t_fdf *fdf)
 	int		i;
 	char	*tmp;
 	char	*temp;
-	//char	**arrayz;
 	t_point	**mp;
-	t_map	*map;
 
 	i = 0;
-	map = (t_map *)malloc(sizeof(*map));
-	mp = (t_point **)malloc(sizeof(**mp));
-	map->map = mp;
-	fdf->map = map;
-	//fdf->map.map = mp;
 	line = ft_strnew(0);
 	tmp = line;
 	while (get_next_line(fd, &line))
@@ -42,9 +35,10 @@ void	make_long_string(int fd, t_fdf *fdf)
 	}
 	if (i == 0)
 		ft_error(1);
-	fdf->sizey = i;
+	fdf->sizex = i;
+	mp = (t_point **)malloc(i * sizeof(**mp));
+	fdf->map = mp;
 	doublesplit(tmp, i, fdf);
-	//return (arrayz);
 }
 
 void	doublesplit(char *line, int i, t_fdf *fdf)
@@ -58,30 +52,28 @@ void	doublesplit(char *line, int i, t_fdf *fdf)
 	t_point	**mp;
 
 	count = 0;
-	mp = fdf->map->map;
+	mp = fdf->map;
 	farray = ft_strsplit(line, '\n');
-	//finarray = (char **)malloc((i + 1) * sizeof(char *));
 	j = 0;
 	while (j < i)
 	{
 		finarray = ft_strsplit(farray[j], ' ');
+		while (finarray[count])
+			count++;
 		k = 0;
-		mp[k] = (t_point *)malloc((j + 1) * sizeof(*mp));
+		mp[j] = (t_point *)malloc((count + 1) * sizeof(*mp));
 		while (*finarray)
 		{
 			elems = ft_strsplit(*finarray, ',');
-			// fdf->map.map[k][j].z = elems[0];
-			// fdf->map.map[k][j].color = elems[1];//абстрактные k, j
-			mp[k][j].z = ft_atoi(elems[0]); //SEGFAULT HERE!!!
-			mp[k][j].color = elems[1];
+			fdf->map[j][k].z = ft_atoi(elems[0]);
+			fdf->map[j][k].color = elems[1];//абстрактные k, j
 			k++;
+			finarray++;
 		}
 		j++;
 	}
-	fdf->sizex = k;
-	fdf->map->map = mp;
-	//finarray[j] = '\0';
-	//return (finarray);
+	fdf->sizey = k;
+	fdf->map = mp;
 }
 
 // void	check_length(t_fdf *fdf, char ***array, int i)

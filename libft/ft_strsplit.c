@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 15:39:18 by bbear             #+#    #+#             */
-/*   Updated: 2018/12/09 22:02:41 by bbear            ###   ########.fr       */
+/*   Updated: 2019/02/14 16:03:10 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static char		**ft_cleanall(char **new, size_t i)
 	j = 0;
 	while (j < i)
 	{
-		free(new[i]);
+		free(new[j]);
 		j++;
 	}
 	new = NULL;

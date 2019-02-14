@@ -14,11 +14,11 @@ typedef struct	s_point
 	char		*color;
 }				t_point;
 
-typedef struct	s_map
-{
-	t_point		**map;
-	int			size[2];
-}				t_map;
+// typedef struct	s_map
+// {
+
+// 	int			size[2];
+// }				t_map;
 
 typedef struct	s_fdf
 {
@@ -28,7 +28,8 @@ typedef struct	s_fdf
 	int			color[3];
 	int			sizex;
 	int			sizey;
-	t_map		*map;
+	t_point		**map;
+	//t_map		*map;
 }				t_fdf;
 
 typedef struct	s_bres
