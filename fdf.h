@@ -5,6 +5,7 @@
 # include "mlx.h"
 # include <stdlib.h>
 # include "libft/includes/libft.h"
+# include <stdio.h> //DELETE AFTER COMPLITION!!!
 
 typedef struct	s_point
 {
@@ -44,9 +45,10 @@ void			celldraw(t_fdf *fdf, int startx, int starty);
 void			draw_y(t_fdf *fdf, int starty, int *x, int size);
 void			draw_x(t_fdf *fdf, int startx, int *y, int size);
 void			ft_error(int nb);
-void			make_long_string(int fd, t_fdf *fdf);
-void			doublesplit(char *line, int i, t_fdf *fdf);
-void			check_length(t_fdf *fdf, char ***array, int i);
+//void			make_long_string(int fd, t_fdf *fdf);
+//void			doublesplit(char *line, int i, t_fdf *fdf);
+//void			check_length(t_fdf *fdf, char ***array, int i);
+void			validation(t_fdf *fdf, int fd);
 
 
 #endif

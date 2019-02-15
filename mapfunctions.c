@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 16:15:32 by bbear             #+#    #+#             */
-/*   Updated: 2019/02/14 16:12:26 by bbear            ###   ########.fr       */
+/*   Updated: 2019/02/14 17:31:29 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ void	doublesplit(char *line, int i, t_fdf *fdf)
 	int		k;
 	t_point	**mp;
 
-	count = 0;
 	mp = fdf->map;
 	farray = ft_strsplit(line, '\n');
 	j = 0;
 	while (j < i)
 	{
-		finarray = ft_strsplit(farray[j], ' ');
+		count = 0;
+		finarray = ft_split_whitespaces(farray[j]);
 		while (finarray[count])
 			count++;
 		k = 0;
@@ -66,7 +66,7 @@ void	doublesplit(char *line, int i, t_fdf *fdf)
 		{
 			elems = ft_strsplit(*finarray, ',');
 			fdf->map[j][k].z = ft_atoi(elems[0]);
-			fdf->map[j][k].color = elems[1];//абстрактные k, j
+			fdf->map[j][k].color = elems[1];//k == x, j == y
 			k++;
 			finarray++;
 		}

@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 17:16:39 by bbear             #+#    #+#             */
-/*   Updated: 2019/02/14 15:24:51 by bbear            ###   ########.fr       */
+/*   Updated: 2019/02/15 17:37:13 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,30 +25,20 @@ int		ft_close(void *param)
 	return (0);
 }
 
-int		main(void)
+int		main(int argc, char **argv)
 {
-	// void	*mlx_ptr;
-	// void	*win_ptr;
 	t_fdf	*fdf;
-	int		size[2];
-	int		x[2];
-	int		y[2];
 	int		fd;
 
-	x[0] = 153;
-	x[1] = 53;
-	y[0] = 70;
-	y[1] = 70;
-	fd = open("./test_maps/42.fdf", O_RDONLY);
-	size[0] = 4;
-	size[1] = 4;
+	fd = open(argv[1], O_RDONLY);
 	fdf = (t_fdf *)malloc(sizeof(*fdf));
 	fdf->mlx_ptr = mlx_init();
 	fdf->cellsize = 50;
 	fdf->color[0] = 0x0000FFFF;
 	fdf->color[1] = 0x00FF00FF;
 	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, 1300, 1300, "hell");
-	make_long_string(fd, fdf);
+	//make_long_string(fd, fdf);
+	validation(fdf, fd);
 	celldraw(fdf, 50, 50);
 	mlx_key_hook(fdf->win_ptr, key_press, (void *)0);
 	mlx_hook(fdf->win_ptr, 17, 0, ft_close, (void *)0);

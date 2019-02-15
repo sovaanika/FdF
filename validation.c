@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/02 15:32:51 by bbear             #+#    #+#             */
-/*   Updated: 2019/02/14 17:14:49 by bbear            ###   ########.fr       */
+/*   Created: 2019/02/14 17:58:02 by bbear             #+#    #+#             */
+/*   Updated: 2019/02/15 21:23:36 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fdf.h"
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+void	validation(t_fdf *fdf, int fd)
 {
-	char	*sub;
-	size_t	i;
+	char	buf[128];
+	char	*res;
+	int		count;
+	char	*tmp;
+	char	**arrn;
 
-	if (s == NULL)
-		return (NULL);
-	i = 0;
-	sub = (char *)malloc((len + 1) * sizeof(*sub));
-	if (sub == NULL)
-		return (NULL);
-	s = &s[start];
-	while (i < len)
+	res = ft_strnew(0);
+	while ((count = read(fd, buf, 128)) > 0)
 	{
-		sub[i] = *s++;
-		i++;
+		buf[count] = '\0';
+		tmp = res;
+		res = ft_strjoin(res, buf);
+		free(tmp);
 	}
-	sub[i] = '\0';
-	sub = &sub[0];
-	return (sub);
+	arrn = ft_strsplit(res, '\n');
+	int i = 0;
+	while (i++ < 5)
+		printf("%s\n", arrn[i]);
 }
+
+void	second_split(char **arrn, )
