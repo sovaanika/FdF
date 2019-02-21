@@ -49,6 +49,9 @@ void			ft_error(int nb);
 //void			doublesplit(char *line, int i, t_fdf *fdf);
 //void			check_length(t_fdf *fdf, char ***array, int i);
 void			validation(t_fdf *fdf, int fd);
+void			mkmap(char **arrn, t_fdf *fdf);
+void			second_split(char **arrn, t_fdf *fdf);
+void			check_size(char **arrfin, t_fdf *fdf, int i);
 
 
 #endif

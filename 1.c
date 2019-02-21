@@ -6,20 +6,20 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 17:16:39 by bbear             #+#    #+#             */
-/*   Updated: 2019/02/15 17:37:13 by bbear            ###   ########.fr       */
+/*   Updated: 2019/02/21 18:34:37 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		key_press(int key, void *param)
+int		key_press(int key)
 {
-	if (key == 53 || key == 17)
+	if (key == 53)
 		exit(EXIT_SUCCESS);
 	return (0);
 }
 
-int		ft_close(void *param)
+int		ft_close(void)
 {
 	exit(0);
 	return (0);
@@ -30,19 +30,21 @@ int		main(int argc, char **argv)
 	t_fdf	*fdf;
 	int		fd;
 
-	fd = open(argv[1], O_RDONLY);
-	fdf = (t_fdf *)malloc(sizeof(*fdf));
-	fdf->mlx_ptr = mlx_init();
-	fdf->cellsize = 50;
-	fdf->color[0] = 0x0000FFFF;
-	fdf->color[1] = 0x00FF00FF;
-	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, 1300, 1300, "hell");
-	//make_long_string(fd, fdf);
-	validation(fdf, fd);
-	celldraw(fdf, 50, 50);
-	mlx_key_hook(fdf->win_ptr, key_press, (void *)0);
-	mlx_hook(fdf->win_ptr, 17, 0, ft_close, (void *)0);
-	mlx_loop(fdf->mlx_ptr);
+	if (argc == 2)
+	{
+		fd = open(argv[1], O_RDONLY);
+		fdf = (t_fdf *)malloc(sizeof(*fdf));
+		fdf->mlx_ptr = mlx_init();
+		fdf->cellsize = 50;
+		fdf->color[0] = 0x0000FFFF;
+		fdf->color[1] = 0x00FF00FF;
+		fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, 1300, 1300, "hell");
+		validation(fdf, fd);
+		celldraw(fdf, 50, 50);
+		mlx_key_hook(fdf->win_ptr, key_press, (void *)0);
+		mlx_hook(fdf->win_ptr, 17, 0, ft_close, (void *)0);
+		mlx_loop(fdf->mlx_ptr);
+	}
 }
 //gcc -g 1.c bresenham.c error.c celldraw.c mapfunctions.c -Ifdf.h -lmlx -framework OpenGL -framework AppKit
 

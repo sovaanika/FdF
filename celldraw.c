@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 16:26:25 by bbear             #+#    #+#             */
-/*   Updated: 2019/02/11 14:21:11 by bbear            ###   ########.fr       */
+/*   Updated: 2019/02/21 18:15:11 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@ void	celldraw(t_fdf *fdf, int startx, int starty)
 	x[1] = x[0];
 	y[0] = starty + (fdf->cellsize);
 	y[1] = y[0];
-	while (i++ < fdf->sizey)
+	while (i++ < fdf->sizex)
 	{
-		draw_y(fdf, starty, x, fdf->sizex);
+		draw_y(fdf, starty, x, fdf->sizey);
 		x[0] += fdf->cellsize;
 		x[1] = x[0];
 	}
 	i = 0;
 	x[0] = startx + (fdf->cellsize);
 	x[1] = x[0];
-	while (i++ < fdf->sizex)
+	while (i++ < fdf->sizey)
 	{
-		draw_x(fdf, startx, y, fdf->sizey);
+		draw_x(fdf, startx, y, fdf->sizex);
 		y[0] = y[0] + fdf->cellsize;
 		y[1] = y[0];
 	}
