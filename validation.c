@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 17:58:02 by bbear             #+#    #+#             */
-/*   Updated: 2019/02/21 18:34:13 by bbear            ###   ########.fr       */
+/*   Updated: 2019/02/26 18:35:28 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,8 @@ void	validation(t_fdf *fdf, int fd)
 	arrn = ft_strsplit(res, '\n');
 	mkmap(arrn, fdf);
 	second_split(arrn, fdf);
-	// int i = 0;
-	// while (i++ < 5)
-	// 	printf("%s\n", arrn[i]);
+	cleanarr(arrn);
+	putcords(fdf);
 }
 
 void	mkmap(char **arrn, t_fdf *fdf)
@@ -44,7 +43,7 @@ void	mkmap(char **arrn, t_fdf *fdf)
 	i = 0;
 	while (arrn[i])
 		i++;
-	map = (t_point **)malloc(i * sizeof(**map));
+	map = (t_point **)malloc((i + 1) * sizeof(**map));
 	fdf->map = map;
 	fdf->sizey = i;
 }
@@ -58,23 +57,23 @@ void	second_split(char **arrn, t_fdf *fdf)
 	t_point	**map;
 
 	map = fdf->map;
-	i = 0;
-	while (arrn[i])
+	i = -1;
+	while (arrn[++i])
 	{
-		j = 0;
+		j = -1;
 		arrfin = ft_strsplit(arrn[i], ' ');
 		check_size(arrfin, fdf, i);
-		map[i] = (t_point *)malloc((fdf->sizex) * sizeof(*map));
-		while (arrfin[j])
+		map[i] = (t_point *)malloc((fdf->sizex + 1) * sizeof(t_point));
+		while (arrfin[++j])
 		{
 			elem = ft_strsplit(arrfin[j], ',');
-			fdf->map[i][j].z = ft_atoi(elem[0]);
-			fdf->map[i][j].color = elem[1];
+			map[i][j].z = (double)ft_atoi(elem[0]);
+			if (elem[1])
+				map[i][j].color = elem[1];
 			free(elem);
-			j++;
 		}
-		i++;
 	}
+	cleanarr(arrfin);
 	fdf->map = map;
 }
 
@@ -90,4 +89,18 @@ void	check_size(char **arrfin, t_fdf *fdf, int i)
 			ft_error(2);
 	if (i == 0)
 		fdf->sizex = j;
+}
+
+void	cleanarr(char **array)
+{
+	int		i;
+
+	i = 0;
+	while (array[i])
+	{
+		ft_strdel(&array[i]);
+		i++;
+	}
+	free(array);
+	array = NULL;
 }
