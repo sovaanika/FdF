@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 17:58:02 by bbear             #+#    #+#             */
-/*   Updated: 2019/02/26 18:35:28 by bbear            ###   ########.fr       */
+/*   Updated: 2019/02/27 17:18:57 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,24 +52,24 @@ void	second_split(char **arrn, t_fdf *fdf)
 {
 	char	**arrfin;
 	char	**elem;
-	int		i;
-	int		j;
+	int		y;
+	int		x;
 	t_point	**map;
 
 	map = fdf->map;
-	i = -1;
-	while (arrn[++i])
+	y = -1;
+	while (arrn[++y])
 	{
-		j = -1;
-		arrfin = ft_strsplit(arrn[i], ' ');
-		check_size(arrfin, fdf, i);
-		map[i] = (t_point *)malloc((fdf->sizex + 1) * sizeof(t_point));
-		while (arrfin[++j])
+		x = -1;
+		arrfin = ft_strsplit(arrn[y], ' ');
+		check_size(arrfin, fdf, y);
+		map[y] = (t_point *)malloc((fdf->sizex + 1) * sizeof(t_point));
+		while (arrfin[++x])
 		{
-			elem = ft_strsplit(arrfin[j], ',');
-			map[i][j].z = (double)ft_atoi(elem[0]);
+			elem = ft_strsplit(arrfin[x], ',');
+			map[y][x].z = (double)(ft_atoi(elem[0]) * fdf->cellsize);
 			if (elem[1])
-				map[i][j].color = elem[1];
+				map[y][x].color = elem[1];
 			free(elem);
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 16:26:25 by bbear             #+#    #+#             */
-/*   Updated: 2019/02/21 18:15:11 by bbear            ###   ########.fr       */
+/*   Updated: 2019/02/27 18:52:45 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,55 +15,46 @@
 void	celldraw(t_fdf *fdf, int startx, int starty)
 {
 	int		i;
-	int		x[2];
-	int		y[2];
 
-	i = 0;
-	x[0] = startx + (fdf->cellsize);
-	x[1] = x[0];
-	y[0] = starty + (fdf->cellsize);
-	y[1] = y[0];
-	while (i++ < fdf->sizex)
+	i = -1;
+	while (++i < fdf->sizex)
+		draw_y(fdf, starty, startx, i);
+	i = -1;
+	while (++i < fdf->sizey)
+		draw_x(fdf, startx, starty, i);
+}
+
+void	draw_x(t_fdf *fdf, int startx, int starty, int y)
+{
+	int		x;
+	double	xcord[2];
+	double	ycord[2];
+
+	ycord[1] = ycord[0];
+	x = -1;
+	while (++x < fdf->sizex - 1)
 	{
-		draw_y(fdf, starty, x, fdf->sizey);
-		x[0] += fdf->cellsize;
-		x[1] = x[0];
-	}
-	i = 0;
-	x[0] = startx + (fdf->cellsize);
-	x[1] = x[0];
-	while (i++ < fdf->sizey)
-	{
-		draw_x(fdf, startx, y, fdf->sizex);
-		y[0] = y[0] + fdf->cellsize;
-		y[1] = y[0];
+		xcord[0] = (double)startx + fdf->map[y][x].x;
+		xcord[1] = (double)startx + fdf->map[y][x + 1].x;
+		ycord[0] = (double)starty + fdf->map[y][x].y;
+		ycord[1] = (double)starty + fdf->map[y][x + 1].y;
+		bresenham(fdf, xcord, ycord);
 	}
 }
 
-void	draw_x(t_fdf *fdf, int startx, int *y, int size)
+void	draw_y(t_fdf *fdf, int starty, int startx, int x)
 {
-	int		i;
-	int		x[2];
+	int		y;
+	double	xcord[2];
+	double	ycord[2];
 
-	i = 0;
-	while (i++ < size - 1)
+	y = -1;
+	while (++y < fdf->sizey - 1)
 	{
-		x[0] = startx + i * (fdf->cellsize);
-		x[1] = x[0] + fdf->cellsize;
-		bresenham(fdf, x, y);
-	}
-}
-
-void	draw_y(t_fdf *fdf, int starty, int *x, int size)
-{
-	int		j;
-	int		y[2];
-
-	j = 0;
-	while (j++ < size - 1)
-	{
-		y[0] = starty + j * (fdf->cellsize);
-		y[1] = y[0] + fdf->cellsize;
-		bresenham(fdf, x, y);
+		ycord[0] = (double)starty + fdf->map[y][x].y;
+		ycord[1] = (double)starty + fdf->map[y + 1][x].y;
+		xcord[0] = (double)startx + fdf->map[y][x].x;
+		xcord[1] = (double)startx + fdf->map[y + 1][x].x;
+		bresenham(fdf, xcord, ycord);
 	}
 }

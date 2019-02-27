@@ -29,14 +29,14 @@ typedef struct	s_fdf
 typedef struct	s_bres
 {
 	int			sign[2];
-	int			delta[2];
-	int			error[2];
+	double		delta[2];
+	double		error[2];
 }				t_bres;
 
-void			bresenham(t_fdf *fdf, int *x, int *y);
+void			bresenham(t_fdf *fdf, double *x, double *y);
 void			celldraw(t_fdf *fdf, int startx, int starty);
-void			draw_y(t_fdf *fdf, int starty, int *x, int size);
-void			draw_x(t_fdf *fdf, int startx, int *y, int size);
+void			draw_y(t_fdf *fdf, int starty, int startx, int x);
+void			draw_x(t_fdf *fdf, int startx, int starty, int y);
 void			ft_error(int nb);
 void			validation(t_fdf *fdf, int fd);
 void			mkmap(char **arrn, t_fdf *fdf);
@@ -44,6 +44,8 @@ void			second_split(char **arrn, t_fdf *fdf);
 void			check_size(char **arrfin, t_fdf *fdf, int i);
 void			cleanarr(char **array);
 void			putcords(t_fdf *fdf);
-
+void			rotate_x(t_fdf *fdf, double angle);
+void			draw(t_fdf *fdf);
+void			rotate_y(t_fdf *fdf, double angle);
 
 #endif
