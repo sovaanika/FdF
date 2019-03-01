@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 18:13:15 by bbear             #+#    #+#             */
-/*   Updated: 2019/02/27 14:37:15 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/01 18:08:58 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	putcords(t_fdf *fdf)
 		x = 0;
 		while (x < fdf->sizex)
 		{
-			map[y][x].x = (double)(x * fdf->cellsize);
-			map[y][x].y = (double)(y * fdf->cellsize);
+			map[y][x].x = (double)(x * fdf->cell);
+			map[y][x].y = (double)(y * fdf->cell);
 			x++;
 		}
 	}

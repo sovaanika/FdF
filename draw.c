@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 16:24:23 by bbear             #+#    #+#             */
-/*   Updated: 2019/02/27 16:38:55 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/01 16:55:16 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void	draw(t_fdf *fdf)
 {
 	mlx_clear_window(fdf->mlx_ptr, fdf->win_ptr);
-	celldraw(fdf, 50, 50);
+	celldraw(fdf, 400, 400);
 }

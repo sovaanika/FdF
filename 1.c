@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 17:16:39 by bbear             #+#    #+#             */
-/*   Updated: 2019/02/27 19:27:44 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/01 18:44:22 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,21 @@ int		key_press(int key, void *param)
 	fdf = (t_fdf *)param;
 	if (key == 53)
 		exit(EXIT_SUCCESS);
-	else if (key == 88)
+	else if (key == 84)
 	{
-		rotate_x(fdf, 0.2618);
-	}
-	else if (key == 86)
-	{
-		rotate_x(fdf, -0.2618);
+		rotate_x(fdf, 0.2618f);
 	}
 	else if (key == 91)
 	{
-		rotate_y(fdf, 0.2618);
+		rotate_x(fdf, -0.2618f);
 	}
-	else if (key == 84)
+	else if (key == 86)
 	{
-		rotate_y(fdf, -0.2618);
+		rotate_y(fdf, 0.2618f);
+	}
+	else if (key == 88)
+	{
+		rotate_y(fdf, -0.2618f);
 	}
 	return (0);
 }
@@ -49,22 +49,19 @@ int		main(int argc, char **argv)
 	t_fdf	*fdf;
 	int		fd;
 
-	if (argc == 2)
+	if (argc > 1)
 	{
 		fd = open(argv[1], O_RDONLY);
 		fdf = (t_fdf *)malloc(sizeof(*fdf));
 		fdf->mlx_ptr = mlx_init();
-		fdf->cellsize = 10;
-		fdf->color[0] = 0x0000FFFF;
-		fdf->color[1] = 0x00FF00FF;
-		fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, 1300, 1300, "hell");
+		fdf->cell = 20;
+		fdf->col[0] = 0x0000FFFF;
+		fdf->col[1] = 0x00FF00FF;
+		fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, 1700, 1700, "hell");
 		validation(fdf, fd);
-		celldraw(fdf, 50, 50);
+		celldraw(fdf, 400, 400);
 		mlx_key_hook(fdf->win_ptr, key_press, (void *)fdf);
 		mlx_hook(fdf->win_ptr, 17, 0, ft_close, (void *)0);
 		mlx_loop(fdf->mlx_ptr);
 	}
 }
-//gcc -g 1.c bresenham.c error.c celldraw.c mapfunctions.c -Ifdf.h -lmlx -framework OpenGL -framework AppKit
-
-//gcc -g 1.c bresenham.c celldraw.c mapfunctions.c error.c ./libft/ft_strnew.c ./libft/ft_strsplit.c ./libft/ft_strjoin.c ./libft/get_next_line.c ./libft/ft_atoi.c ./libft/ft_memalloc.c ./libft/ft_putendl.c ./libft/ft_strchr.c ./libft/ft_strlen.c ./libft/ft_strsub.c ./libft/ft_bzero.c ./libft/ft_putchar.c ./libft/ft_putstr.c -Ifdf.h -lmlx -framework OpenGL -framework AppKit

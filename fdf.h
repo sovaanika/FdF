@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/01 19:04:34 by bbear             #+#    #+#             */
+/*   Updated: 2019/03/01 19:04:46 by bbear            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FDF_H
 # define FDF_H
 
@@ -19,8 +31,8 @@ typedef struct	s_fdf
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	int			cellsize;
-	int			color[3];
+	int			cell;
+	int			col[3];
 	int			sizex;
 	int			sizey;
 	t_point		**map;
@@ -28,9 +40,12 @@ typedef struct	s_fdf
 
 typedef struct	s_bres
 {
-	int			sign[2];
 	double		delta[2];
-	double		error[2];
+	double		xi;
+	double		yi;
+	double		d;
+	double		y;
+	double		x;
 }				t_bres;
 
 void			bresenham(t_fdf *fdf, double *x, double *y);
@@ -47,5 +62,8 @@ void			putcords(t_fdf *fdf);
 void			rotate_x(t_fdf *fdf, double angle);
 void			draw(t_fdf *fdf);
 void			rotate_y(t_fdf *fdf, double angle);
+void			plotlinelow(double *xc, double *yc, t_fdf *fdf);
+void			plotlinehigh(double *xc, double *yc, t_fdf *fdf);
+double			*ft_swap(double *param);
 
 #endif
