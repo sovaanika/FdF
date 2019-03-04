@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 19:04:34 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/04 15:52:39 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/04 20:43:26 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ typedef struct	s_point
 	char		*color;
 }				t_point;
 
+typedef struct	s_rotate
+{
+	int			x;
+	int			y;
+}				t_rotate;
+
 typedef struct	s_fdf
 {
 	void		*mlx_ptr;
@@ -42,6 +48,8 @@ typedef struct	s_fdf
 	int			sizex;
 	int			sizey;
 	t_point		**map;
+	t_point		**stmap;
+	t_rotate	rot;
 }				t_fdf;
 
 typedef struct	s_bres
@@ -71,5 +79,6 @@ void			rotate_y(t_fdf *fdf, double angle);
 void			plotlinelow(double *xc, double *yc, t_fdf *fdf);
 void			plotlinehigh(double *xc, double *yc, t_fdf *fdf);
 double			*ft_swap(double *param);
+void			makestmap(t_fdf *fdf);
 
 #endif

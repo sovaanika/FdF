@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 17:16:39 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/04 19:18:18 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/04 20:58:24 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,34 @@
 int		key_press(int key, void *param)
 {
 	t_fdf	*fdf;
+	double	angle;
+	int		rcount;
 
+	rcount = 0;
+	angle = M_PI / 12;
 	fdf = (t_fdf *)param;
 	if (key == 53)
 		exit(EXIT_SUCCESS);
 	else if (key == 91)
-		rotate_x(fdf, M_PI / 12);
+	{
+		fdf->rot.x++;
+		rotate_x(fdf, angle * fdf->rot.x);
+	}
 	else if (key == 84)
-		rotate_x(fdf, -M_PI / 12);
+	{
+		fdf->rot.x--;
+		rotate_x(fdf, angle * fdf->rot.x);
+	}
 	else if (key == 88)
-		rotate_y(fdf, M_PI / 12);
+	{
+		fdf->rot.y++;
+		rotate_y(fdf, angle * fdf->rot.y);
+	}
 	else if (key == 86)
-		rotate_y(fdf, -M_PI / 12);
+	{
+		fdf->rot.y--;
+		rotate_y(fdf, angle * fdf->rot.y);
+	}
 	return (0);
 }
 
@@ -47,8 +63,8 @@ int		main(int argc, char **argv)
 		fdf = (t_fdf *)malloc(sizeof(*fdf));
 		fdf->mlx_ptr = mlx_init();
 		fdf->cell = 5;
-		//fdf->col[0] = 0x0000FFFF;
-		//fdf->col[1] = 0x00FFFFFF;
+		fdf->rot.x = 0;
+		fdf->rot.y = 0;
 		fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, WIDTH, HEIGTH, "hell");
 		fdf->img_ptr = mlx_new_image(fdf->mlx_ptr, WIDTH, HEIGTH);
 		fdf->data = (int *)mlx_get_data_addr(fdf->img_ptr, &fdf->bpp,

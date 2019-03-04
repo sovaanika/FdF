@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 17:58:02 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/04 18:21:26 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/04 20:27:58 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	validation(t_fdf *fdf, int fd)
 	second_split(arrn, fdf);
 	cleanarr(arrn);
 	putcords(fdf);
+	makestmap(fdf);
 }
 
 void	mkmap(char **arrn, t_fdf *fdf)
@@ -74,7 +75,6 @@ void	second_split(char **arrn, t_fdf *fdf)
 		}
 	}
 	cleanarr(arrfin);
-	fdf->map = map;
 }
 
 void	check_size(char **arrfin, t_fdf *fdf, int i)

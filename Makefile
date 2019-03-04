@@ -1,5 +1,5 @@
 NAME = fdf
-SRC = error.c main.c celldraw.c bresenham.c rotate.c draw.c validation.c putcords.c
+SRC = error.c main.c celldraw.c bresenham.c rotate.c draw.c validation.c putcords.c makestablemap.c
 INC = fdf.h
 LIB = ./libft/
 
