@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 17:58:02 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/01 18:08:46 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/04 18:21:26 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	validation(t_fdf *fdf, int fd)
 {
-	char	buf[128];
+	char	buf[10000];
 	char	*res;
 	int		count;
 	char	*tmp;
 	char	**arrn;
 
 	res = ft_strnew(0);
-	while ((count = read(fd, buf, 127)) > 0)
+	while ((count = read(fd, buf, 9999)) > 0)
 	{
 		buf[count] = '\0';
 		tmp = res;

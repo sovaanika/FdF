@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 14:57:00 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/01 18:18:25 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/04 18:33:21 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,15 @@ void	plotlinelow(double *xc, double *yc, t_fdf *fdf)
 	data.x = xc[0];
 	while (data.x <= xc[1] && data.x >= xc[0])
 	{
-		mlx_pixel_put(fdf->mlx_ptr, fdf->win_ptr, data.x, data.y, fdf->col[1]);
 		if (data.d > 0)
 		{
-			data.y = data.y + data.yi;
+			data.y += data.yi;
 			data.d = data.d - 2 * data.delta[0];
 		}
 		data.d = data.d + 2 * data.delta[1];
-		data.x++;
+		if (data.x < WIDTH && data.x > 0 && data.y < HEIGTH && data.y > 0)
+			fdf->data[(int)data.y * WIDTH + (int)data.x] = 16777215;
+		++data.x;
 	}
 }
 
@@ -57,14 +58,15 @@ void	plotlinehigh(double *xc, double *yc, t_fdf *fdf)
 	data.y = yc[0];
 	while (data.y <= yc[1] && data.y >= yc[0])
 	{
-		mlx_pixel_put(fdf->mlx_ptr, fdf->win_ptr, data.x, data.y, fdf->col[1]);
 		if (data.d > 0)
 		{
-			data.x = data.x + data.xi;
+			data.x += data.xi;
 			data.d = data.d - 2 * data.delta[1];
 		}
 		data.d = data.d + 2 * data.delta[0];
-		data.y++;
+		if (data.x < WIDTH && data.x > 0 && data.y < HEIGTH && data.y > 0)
+			fdf->data[(int)data.y * WIDTH + (int)data.x] = 16777215;
+		++data.y;
 	}
 }
 

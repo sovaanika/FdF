@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 19:04:34 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/01 19:04:46 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/04 15:52:39 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 # include <stdlib.h>
 # include "libft/includes/libft.h"
 # include <stdio.h> //DELETE AFTER COMPLETION!!!
-
+# define WIDTH 1500
+# define HEIGTH 1500
 typedef struct	s_point
 {
 	double		x;
@@ -30,7 +31,12 @@ typedef struct	s_point
 typedef struct	s_fdf
 {
 	void		*mlx_ptr;
+	void		*img_ptr;
 	void		*win_ptr;
+	int			*data;
+	int			bpp;
+	int			size_l;
+	int			end;
 	int			cell;
 	int			col[3];
 	int			sizex;
