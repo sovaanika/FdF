@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 16:26:25 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/04 17:18:27 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/05 15:32:15 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	draw_x(t_fdf *fdf, int startx, int starty, int y)
 		xcord[1] = (double)startx + fdf->map[y][x + 1].x;
 		ycord[0] = (double)starty + fdf->map[y][x].y;
 		ycord[1] = (double)starty + fdf->map[y][x + 1].y;
-		bresenham(fdf, xcord, ycord);
+		bresenham(fdf, xcord, ycord, fdf->map[y][x].color);
 	}
 }
 
@@ -56,6 +56,6 @@ void	draw_y(t_fdf *fdf, int starty, int startx, int x)
 		ycord[1] = (double)starty + fdf->map[y + 1][x].y;
 		xcord[0] = (double)startx + fdf->map[y][x].x;
 		xcord[1] = (double)startx + fdf->map[y + 1][x].x;
-		bresenham(fdf, xcord, ycord);
+		bresenham(fdf, xcord, ycord, fdf->map[y][x].color);
 	}
 }

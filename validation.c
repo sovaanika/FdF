@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 17:58:02 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/04 20:27:58 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/05 13:45:31 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ void	second_split(char **arrn, t_fdf *fdf)
 		{
 			elem = ft_strsplit(arrfin[x], ',');
 			map[y][x].z = (double)(ft_atoi(elem[0]) * fdf->cell);
-			if (elem[1])
-				map[y][x].color = elem[1];
+			//if (elem[1])
+				map[y][x].color = ft_atoi_base(elem[1]);
 			free(elem);
 		}
 	}

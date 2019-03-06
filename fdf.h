@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 19:04:34 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/04 20:43:26 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/06 14:46:14 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@
 # include <stdio.h> //DELETE AFTER COMPLETION!!!
 # define WIDTH 1500
 # define HEIGTH 1500
+# define ANGLE M_PI / 12
+
 typedef struct	s_point
 {
 	double		x;
 	double		y;
 	double		z;
-	char		*color;
+	int			color;
 }				t_point;
 
 typedef struct	s_rotate
@@ -44,9 +46,11 @@ typedef struct	s_fdf
 	int			size_l;
 	int			end;
 	int			cell;
+	int			cellnew;
 	int			col[3];
 	int			sizex;
 	int			sizey;
+	double		sx;
 	t_point		**map;
 	t_point		**stmap;
 	t_rotate	rot;
@@ -62,7 +66,7 @@ typedef struct	s_bres
 	double		x;
 }				t_bres;
 
-void			bresenham(t_fdf *fdf, double *x, double *y);
+void			bresenham(t_fdf *fdf, double *x, double *y, int color);
 void			celldraw(t_fdf *fdf, int startx, int starty);
 void			draw_y(t_fdf *fdf, int starty, int startx, int x);
 void			draw_x(t_fdf *fdf, int startx, int starty, int y);
@@ -76,9 +80,12 @@ void			putcords(t_fdf *fdf);
 void			rotate_x(t_fdf *fdf, double angle);
 void			draw(t_fdf *fdf);
 void			rotate_y(t_fdf *fdf, double angle);
-void			plotlinelow(double *xc, double *yc, t_fdf *fdf);
-void			plotlinehigh(double *xc, double *yc, t_fdf *fdf);
+void			plotlinelow(double *xc, double *yc, t_fdf *fdf, int color);
+void			plotlinehigh(double *xc, double *yc, t_fdf *fdf, int color);
 double			*ft_swap(double *param);
 void			makestmap(t_fdf *fdf);
+int				ft_atoi_base(const char *str);
+void			rotate(t_fdf *fdf, double angle);
+void			resize(t_fdf *fdf);
 
 #endif

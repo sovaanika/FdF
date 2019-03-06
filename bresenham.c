@@ -6,13 +6,13 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 14:57:00 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/04 18:33:21 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/05 15:24:13 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	plotlinelow(double *xc, double *yc, t_fdf *fdf)
+void	plotlinelow(double *xc, double *yc, t_fdf *fdf, int color)
 {
 	t_bres	data;
 
@@ -36,12 +36,12 @@ void	plotlinelow(double *xc, double *yc, t_fdf *fdf)
 		}
 		data.d = data.d + 2 * data.delta[1];
 		if (data.x < WIDTH && data.x > 0 && data.y < HEIGTH && data.y > 0)
-			fdf->data[(int)data.y * WIDTH + (int)data.x] = 16777215;
+			fdf->data[(int)data.y * WIDTH + (int)data.x] = color;
 		++data.x;
 	}
 }
 
-void	plotlinehigh(double *xc, double *yc, t_fdf *fdf)
+void	plotlinehigh(double *xc, double *yc, t_fdf *fdf, int color)
 {
 	t_bres	data;
 
@@ -65,7 +65,7 @@ void	plotlinehigh(double *xc, double *yc, t_fdf *fdf)
 		}
 		data.d = data.d + 2 * data.delta[0];
 		if (data.x < WIDTH && data.x > 0 && data.y < HEIGTH && data.y > 0)
-			fdf->data[(int)data.y * WIDTH + (int)data.x] = 16777215;
+			fdf->data[(int)data.y * WIDTH + (int)data.x] = color;
 		++data.y;
 	}
 }
@@ -80,18 +80,18 @@ double	*ft_swap(double *param)
 	return (param);
 }
 
-void	bresenham(t_fdf *fdf, double *x, double *y)
+void	bresenham(t_fdf *fdf, double *x, double *y, int color)
 {
 	if (fabs(y[1] - y[0]) < fabs(x[1] - x[0]))
 		if (x[0] > x[1])
-			plotlinelow(ft_swap(x), ft_swap(y), fdf);
+			plotlinelow(ft_swap(x), ft_swap(y), fdf, color);
 		else
-			plotlinelow(x, y, fdf);
+			plotlinelow(x, y, fdf, color);
 	else
 	{
 		if (y[0] > y[1])
-			plotlinehigh(ft_swap(x), ft_swap(y), fdf);
+			plotlinehigh(ft_swap(x), ft_swap(y), fdf, color);
 		else
-			plotlinehigh(x, y, fdf);
+			plotlinehigh(x, y, fdf, color);
 	}
 }

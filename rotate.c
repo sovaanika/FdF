@@ -6,26 +6,34 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 16:09:05 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/04 20:31:54 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/06 13:59:53 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+void	rotate(t_fdf *fdf, double angle)
+{
+	rotate_x(fdf, angle * (fdf->rot.x % 24));
+	rotate_y(fdf, angle * (fdf->rot.y % 24));
+	draw(fdf);
+}
+
 void	rotate_x(t_fdf *fdf, double angle)
 {
-	t_point	**map;
+	//t_point	**map;
 	int		x;
 	int		y;
 	double	sy;
 
-	map = fdf->map;
+	//map = fdf->map;
 	y = -1;
 	while (++y < fdf->sizey)
 	{
 		x = -1;
 		while (++x < fdf->sizex)
 		{
+			fdf->map[y][x].x = fdf->stmap[y][x].x;
 			sy = fdf->stmap[y][x].y;
 			fdf->map[y][x].y = (sy - (fdf->sizey * fdf->cell) / 2) * cos(angle)
 			- fdf->stmap[y][x].z * sin(angle) + (fdf->sizey * fdf->cell) / 2;
@@ -33,17 +41,17 @@ void	rotate_x(t_fdf *fdf, double angle)
 			+ fdf->stmap[y][x].z * cos(angle);
 		}
 	}
-	draw(fdf);
+	//draw(fdf);
 }
 
 void	rotate_y(t_fdf *fdf, double angle)
 {
-	t_point	**map;
+	//t_point	**map;
 	int		x;
 	int		y;
 	double	sx;
 
-	map = fdf->map;
+	//map = fdf->map;
 	y = -1;
 	while (++y < fdf->sizey)
 	{
@@ -51,12 +59,11 @@ void	rotate_y(t_fdf *fdf, double angle)
 		while (++x < fdf->sizex)
 		{
 			sx = fdf->stmap[y][x].x;
-			map[y][x].y = map[y][x].y;
 			fdf->map[y][x].x = (sx - (fdf->sizex * fdf->cell) / 2) * cos(angle)
-			+ fdf->stmap[y][x].z * sin(angle) + (fdf->sizex * fdf->cell) / 2;
+			+ fdf->map[y][x].z * sin(angle) + (fdf->sizex * fdf->cell) / 2;
 			fdf->map[y][x].z = -1 * ((sx - (fdf->sizex * fdf->cell) / 2)
-			* sin(angle)) + fdf->stmap[y][x].z * cos(angle);
+			* sin(angle)) + fdf->map[y][x].z * cos(angle);
 		}
 	}
-	draw(fdf);
+	//draw(fdf);
 }

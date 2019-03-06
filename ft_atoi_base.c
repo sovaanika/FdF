@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putcords.c                                         :+:      :+:    :+:   */
+/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/26 18:13:15 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/05 15:31:53 by bbear            ###   ########.fr       */
+/*   Created: 2019/03/05 13:32:02 by bbear             #+#    #+#             */
+/*   Updated: 2019/03/05 14:25:57 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+//#include "libft.h"
 
-void	putcords(t_fdf *fdf)
+int			ft_atoi_base(const char *str)
 {
-	t_point	**map;
-	int		y;
-	int		x;
+	int		res;
 
-	y = -1;
-	map = fdf->map;
-	while (++y < fdf->sizey)
+	res = 0;
+	if (!str)
+		return (16777215);
+	while (*str == '0' || *str == 'x')
+		str++;
+	while ((*str >= '0' && *str <= '9') ||
+	(*str >= 'a' && *str <= 'f') || (*str >= 'A' && *str <= 'F'))
 	{
-		x = -1;
-		while (++x < fdf->sizex)
-		{
-			map[y][x].x = (double)(x * fdf->cell);
-			map[y][x].y = (double)(y * fdf->cell);
-		}
+		res = res * 16 + (*str - 48);
+		str++;
 	}
+	return (res);
 }
