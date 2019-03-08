@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 17:16:39 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/06 14:51:16 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/08 20:38:08 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ int		key_press(int key, void *param)
 		else
 			key == 88 ? fdf->rot.y++ : fdf->rot.y--;
 		rotate(fdf, ANGLE);
+	}
+	else if (key == 34 || key == 45)
+	{
+		projection(key == 34 ? 1 : 0, fdf);
 	}
 	return (0);
 }
@@ -60,7 +64,7 @@ int		main(int argc, char **argv)
 		fdf->data = (int *)mlx_get_data_addr(fdf->img_ptr, &fdf->bpp,
 		&fdf->size_l, &fdf->end);
 		validation(fdf, fd);
-		celldraw(fdf, 50, 50);
+		celldraw(fdf, 500, 500);
 		mlx_key_hook(fdf->win_ptr, key_press, (void *)fdf);
 		mlx_hook(fdf->win_ptr, 17, 0, ft_close, (void *)0);
 		mlx_loop(fdf->mlx_ptr);

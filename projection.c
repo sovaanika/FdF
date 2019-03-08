@@ -1,30 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   projection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/27 16:24:23 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/08 20:38:26 by bbear            ###   ########.fr       */
+/*   Created: 2019/03/08 20:20:31 by bbear             #+#    #+#             */
+/*   Updated: 2019/03/08 20:37:09 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	draw(t_fdf *fdf)
+void	projection(int type, t_fdf *fdf)
 {
 	int		x;
 	int		y;
 
-	x = -1;
-	while (++x < WIDTH)
+	y = -1;
+	if (type == 1)
 	{
-		y = -1;
-		while (++y < HEIGTH)
+		while (++y < fdf->sizey)
 		{
-			fdf->data[y * WIDTH + x] = 0;
+			x = -1;
+			while (++x < fdf->sizex)
+			{
+				fdf->map[y][x].x = (fdf->stmap[y][x].x - fdf->stmap[y][x].y) * cos(0.523599);
+				fdf->map[y][x].y = -(fdf->stmap[y][x].z) + (fdf->stmap[y][x].x + fdf->stmap[y][x].y) * sin(0.523599);
+				//fdf->map[y][x].z = fdf->stmap[y][x].z;
+			}
 		}
+		draw(fdf);
 	}
-	celldraw(fdf, 500, 500);
+	else
+	{
+		fdf->rot.x = 0;
+		fdf->rot.y = 0;
+		rotate(fdf, ANGLE);
+	}
 }

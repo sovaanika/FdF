@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 19:04:34 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/06 14:46:14 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/08 20:28:07 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,6 @@ void			makestmap(t_fdf *fdf);
 int				ft_atoi_base(const char *str);
 void			rotate(t_fdf *fdf, double angle);
 void			resize(t_fdf *fdf);
+void			projection(int type, t_fdf *fdf);
 
 #endif
