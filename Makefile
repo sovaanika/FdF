@@ -1,19 +1,39 @@
 NAME = fdf
-SRC = error.c main.c celldraw.c bresenham.c projection.c resize.c rotate.c draw.c validation.c putcords.c ft_atoi_base.c makestablemap.c
-INC = fdf.h
-LIB = ./libft/
+SRCSFOLDER = ./srcs/
+SRCS = error.c winresize.c legend.c main.c celldraw.c bresenham.c projection.c resize.c rotate.c move.c draw.c validation.c putcords.c ft_atoi_base.c makestablemap.c
+OBJNAME = $(SRCS:.c=.o)
+OBJDIR = ./obj/
+OBJ = $(addprefix $(OBJDIR),$(OBJNAME))
+INCLUDES = fdf.h
+GCCFLAG = -Wall -Wextra -Werror
+
+LIBFTFOLDER = ./libft/
+LIBFTINCLUDES = $(LIBFTFOLDER)
+LIBFTINK = -I $(LIBFTINCLUDES) -L $(LIBFTFOLDER) -lft
+
+MLXLINTMACOS = -I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)
 
-$(NAME):
-	@$(MAKE) -C $(LIB)
-	gcc -g -Wall -Wextra -Werror -o $(NAME) $(SRC) -I$(INC) ./libft/libft.a -I$(LIB) -lmlx -framework OpenGL -framework AppKit
+$(NAME): $(OBJ)
+	@$(MAKE) -C $(LIBFTFOLDER)
+	gcc -g $(GCCFLAG) $(OBJ) $(MLXLINTMACOS) $(LIBFTINK) -o $(NAME)
 
 clean:
-	@$(MAKE) -C $(LIB) clean
+	@$(MAKE) -C $(LIBFTFOLDER) clean
+	rm -rf $(OBJDIR)
+	rm -rf *.o
 
 fclean: clean
-	@$(MAKE) -C $(LIB) fclean
-	/bin/rm -f $(NAME)
+	@$(MAKE) -C $(LIBFTFOLDER) fclean
+	rm -rf $(OBJDIR)
+	rm -rf $(NAME)
 
-re: fclean all
+$(OBJDIR)%.o:$(SRCSFOLDER)%.c
+	@mkdir -p $(OBJDIR)
+	@gcc $(GCCFLAG) -I $(INCLUDES) -o $@ -c $<
+
+re:	fclean $(NAME)
+
+makeft:
+	@$(MAKE) -C $(LIBFTFOLDER)

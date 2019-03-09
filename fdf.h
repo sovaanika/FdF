@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 19:04:34 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/08 20:28:07 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/09 20:30:03 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <stdlib.h>
 # include "libft/includes/libft.h"
 # include <stdio.h> //DELETE AFTER COMPLETION!!!
-# define WIDTH 1500
-# define HEIGTH 1500
+// # define WIDTH 1500
+// # define HEIGTH 1500
 # define ANGLE M_PI / 12
 
 typedef struct	s_point
@@ -50,10 +50,14 @@ typedef struct	s_fdf
 	int			col[3];
 	int			sizex;
 	int			sizey;
+	int			startx;
+	int			starty;
 	double		sx;
 	t_point		**map;
 	t_point		**stmap;
 	t_rotate	rot;
+	int			wid;
+	int			hei;
 }				t_fdf;
 
 typedef struct	s_bres
@@ -88,5 +92,14 @@ int				ft_atoi_base(const char *str);
 void			rotate(t_fdf *fdf, double angle);
 void			resize(t_fdf *fdf);
 void			projection(int type, t_fdf *fdf);
+void			prerotate(int key, t_fdf *fdf);
+void			preprojection(int key, t_fdf *fdf);
+void			isoproj(t_fdf *fdf);
+void			cabinproj(t_fdf *fdf);
+void			move(int key, t_fdf *fdf);
+void			winresize(int key, t_fdf *fdf);
+int				key_press(int key, void *param);
+int				ft_close(void);
+void			legend(t_fdf *fdf);
 
 #endif
