@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 16:09:05 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/09 18:30:52 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/10 15:22:49 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	rotate_x(t_fdf *fdf, double angle)
 		x = -1;
 		while (++x < fdf->sizex)
 		{
-			//fdf->map[y][x].x = fdf->stmap[y][x].x;
 			sy = fdf->map[y][x].y;
 			fdf->map[y][x].y = (sy - (fdf->sizey * fdf->cell) / 2) * cos(angle)
 			- fdf->map[y][x].z * sin(angle) + (fdf->sizey * fdf->cell) / 2;

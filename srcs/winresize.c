@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 18:52:25 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/09 19:44:01 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/10 15:29:55 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	winresize(int key, t_fdf *fdf)
 	mlx_destroy_image(fdf->mlx_ptr, fdf->img_ptr);
 	mlx_destroy_window(fdf->mlx_ptr, fdf->win_ptr);
 	fdf->data = NULL;
-	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, fdf->wid, fdf->hei, "hell");
+	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, fdf->wid, fdf->hei, "fdf");
 	fdf->img_ptr = mlx_new_image(fdf->mlx_ptr, fdf->wid, fdf->wid);
 	fdf->data = (int *)mlx_get_data_addr(fdf->img_ptr, &fdf->bpp,
 	&fdf->size_l, &fdf->end);

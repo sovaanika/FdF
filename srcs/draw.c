@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 16:24:23 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/09 20:30:40 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/10 15:30:27 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,4 @@ void	draw(t_fdf *fdf)
 		}
 	}
 	celldraw(fdf, fdf->startx, fdf->starty);
-	legend(fdf);
 }

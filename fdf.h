@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 19:04:34 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/09 20:30:03 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/10 15:26:35 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@
 # include "mlx.h"
 # include <stdlib.h>
 # include "libft/includes/libft.h"
-# include <stdio.h> //DELETE AFTER COMPLETION!!!
-// # define WIDTH 1500
-// # define HEIGTH 1500
 # define ANGLE M_PI / 12
 
 typedef struct	s_point
@@ -101,5 +98,6 @@ void			winresize(int key, t_fdf *fdf);
 int				key_press(int key, void *param);
 int				ft_close(void);
 void			legend(t_fdf *fdf);
+void			makedata(t_fdf *fdf);
 
 #endif

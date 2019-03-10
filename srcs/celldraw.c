@@ -6,7 +6,7 @@
 /*   By: bbear <bbear@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 16:26:25 by bbear             #+#    #+#             */
-/*   Updated: 2019/03/09 16:45:17 by bbear            ###   ########.fr       */
+/*   Updated: 2019/03/10 15:30:37 by bbear            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	celldraw(t_fdf *fdf, int startx, int starty)
 	while (++i < fdf->sizey)
 		draw_x(fdf, startx, starty, i);
 	mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img_ptr, 0, 0);
+	legend(fdf);
 }
 
 void	draw_x(t_fdf *fdf, int startx, int starty, int y)
